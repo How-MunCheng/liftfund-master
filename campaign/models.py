@@ -88,6 +88,11 @@ class Campaign(models.Model):
     def get_status_display(self):
         return self.status.upper()
 
+    def save(self, *args, **kwargs):
+        # Automatically update is_active based on status
+        self.is_active = self.status == CampaignStatusChoices.APPROVED
+        super().save(*args, **kwargs)
+
 
 class Donation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -131,7 +136,7 @@ class Donation(models.Model):
     @property
     def admin_earnings(self):
         return self.donation * 0.05
-    
+
     @property
     def admin_earnings_formatted(self):
         return f"${self.admin_earnings:.2f}"

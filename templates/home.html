@@ -40,40 +40,40 @@
 
     </div>
 
-    {% if campaigns.count > 0 %}
-
         <div class="container margin-bottom-40">
             <div class="col-md-12 btn-block margin-bottom-40">
                 <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">Campaigns</h1>
                 <h5 class="btn-block text-center class-montserrat subtitle-color">Recent Campaigns</h5>
             </div>
 
-            <div class="row margin-bottom-40">
+        <div class="row margin-bottom-40">
 
-                <div class="container">
-                    <div class="col-md-4 border-stats">
-                        <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span
-                                class=".numbers-with-commas counter">{{ members }}</span>
-                        </h1>
-                        <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">Members</h5>
-                    </div><!-- col-md-3 -->
+            <div class="container">
+                <div class="col-md-4 border-stats">
+                    <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span
+                            class=".numbers-with-commas counter">{{ members }}</span>
+                    </h1>
+                    <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">Members</h5>
+                </div><!-- col-md-3 -->
 
-                    <div class="col-md-4 border-stats">
-                        <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
-                            <span class=".numbers-with-commas counter">{{ total_campaigns }}</span>
-                        </h1>
-                        <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">CAMPAIGNS</h5>
-                    </div><!-- col-md-3 -->
+                <div class="col-md-4 border-stats">
+                    <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
+                        <span class=".numbers-with-commas counter">{{ total_campaigns }}</span>
+                    </h1>
+                    <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">CAMPAIGNS</h5>
+                </div><!-- col-md-3 -->
 
-                    <div class="col-md-4 border-stats">
-                        <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
-                            ${{ fund_raised.donation__sum }}</h1>
-                        <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">
-                            FUNDS RAISED</h5>
-                    </div><!-- col-md-3 -->
+                <div class="col-md-4 border-stats">
+                    <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
+                        ${{ fund_raised.donation__sum }}</h1>
+                    <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">
+                        FUNDS RAISED</h5>
+                </div><!-- col-md-3 -->
 
-                </div><!-- row -->
-            </div>
+            </div><!-- row -->
+        </div>
+
+    {% if campaigns.count > 0 %}
 
             <div class="margin-bottom-30">
                 {% for campaign in campaigns %}
@@ -81,9 +81,6 @@
                 {% endfor %}
             </div>
 
-
-
-        </div><!-- container wrap-ui -->
 
     {% else %}
         <div class="container margin-bottom-40">
