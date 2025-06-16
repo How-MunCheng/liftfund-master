@@ -27,7 +27,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["total_campaigns"] = Campaign.objects.filter(status="pending").count()
+        context["total_campaigns"] = Campaign.objects.filter(is_active=True).count()
         context["fund_raised"] = Donation.objects.filter(approved=True).aggregate(Sum("donation"))
         context["members"] = User.objects.count()
         context["search_term"] = self.request.GET.get("q", "")

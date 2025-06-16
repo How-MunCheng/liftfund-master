@@ -187,7 +187,7 @@ class Command(BaseCommand):
                 user=random.choice(users),
                 category=category,
                 date=start_date,
-                status=choice(['pending', 'active', 'completed']),
+                status=choice(['active', 'inactive']),
                 goal=goal,
                 location=f"{fake.city()}, {fake.country_code()}",
                 deadline=timezone.now().date() + timedelta(days=randint(10, 180))

@@ -21,7 +21,7 @@ class User(AbstractUser):
             "unique": "A user with this email already exists.",
         },
     )
-    status = models.CharField(max_length=20, default="active")
+    #status = models.CharField(max_length=20, default="active")
     avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 

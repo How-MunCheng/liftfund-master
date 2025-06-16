@@ -742,6 +742,8 @@ a:focus.btn-whatsapp {
 }
 .jumbotron-bottom,
 .bg-sections {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
     background: url('../img/cover.jpg') no-repeat center center #D1D1D1;
     background-size: cover;
     position: relative;
@@ -760,7 +762,7 @@ a:focus.btn-whatsapp {
     top: 0;
 }
 .parallax-cover {
-	background-repeat: repat;
+	background-repeat: repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	position: absolute;

@@ -74,9 +74,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="id_status" class="form-label">Status</label>
                             <select name="status" id="id_status" class="form-select {% if form.status.errors %}is-invalid{% endif %}" required>
-                                <option value="pending" {% if form.status.value == 'pending' %}selected{% endif %}>Pending</option>
+                                <option value="inactive" {% if form.status.value == 'inactive' %}selected{% endif %}>Inactive</option>
                                 <option value="active" {% if form.status.value == 'active' %}selected{% endif %}>Active</option>
-                                <option value="completed" {% if form.status.value == 'completed' %}selected{% endif %}>Completed</option>
                             </select>
                             {% if form.status.errors %}
                                 <div class="invalid-feedback">

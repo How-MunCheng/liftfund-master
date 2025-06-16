@@ -7,6 +7,16 @@
     margin-bottom: 40px;
 }
 
+.jumbotron-bottom {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/cover-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 40px;
+}
+
+
 .title-site {
     font-size: 3em;
     margin-bottom: 20px;

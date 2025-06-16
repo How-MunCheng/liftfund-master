@@ -11,10 +11,8 @@ from core.models import Category
 
 
 class CampaignStatusChoices(models.TextChoices):
-    PENDING = "pending", "Pending"
-    APPROVED = "approved", "Approved"
-    REJECTED = "rejected", "Rejected"
-    DELETED = "deleted", "Deleted"
+    ACTIVE = "active", "Active"
+    INACTIVE = "inactive", "Inactive"
 
 
 class Campaign(models.Model):
@@ -27,7 +25,7 @@ class Campaign(models.Model):
     status = models.CharField(
         max_length=20,
         choices=CampaignStatusChoices.choices,
-        default=CampaignStatusChoices.PENDING,
+        default=CampaignStatusChoices.INACTIVE,
     )
     image = models.ImageField(upload_to="campaigns")
     goal = models.IntegerField()
@@ -90,7 +88,7 @@ class Campaign(models.Model):
 
     def save(self, *args, **kwargs):
         # Automatically update is_active based on status
-        self.is_active = self.status == CampaignStatusChoices.APPROVED
+        self.is_active = self.status == CampaignStatusChoices.ACTIVE
         super().save(*args, **kwargs)
 
 

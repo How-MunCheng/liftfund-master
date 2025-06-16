@@ -671,6 +671,13 @@ ul.dropdown-menu > li.active > a {
     background-size: cover;
     position:relative;
 }
+
+.index-cover {
+    /*padding-top: 140px !important;*/
+    background: url('../img/cover.jpg') no-repeat center center #D1D1D1;
+    background-size: cover;
+    position:relative;
+}
 /***************************
  * Static Header
  * *************************
@@ -1991,16 +1998,12 @@ li.active-list > a:active {
 @media screen and (min-width: 768px) {
 
   .jumbotron {
-    padding: 150px 0;
+      padding: 150px 0;
   }
 
   .searchBar {
       width: 715px;
       margin: 0 auto;
-  }
-
-  .jumbotron-bottom {
-      padding: 65px 10px;
   }
 }
 
@@ -2178,8 +2181,8 @@ h2.title-site {
     background: url('../img/cover.jpg') no-repeat center center #D1D1D1;
     background-size: cover;
     position:relative;
-
 }
+
 .subtitle-color {
     color: #f45302;
 }

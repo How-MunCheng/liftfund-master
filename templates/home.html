@@ -45,6 +45,7 @@
                 <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">Campaigns</h1>
                 <h5 class="btn-block text-center class-montserrat subtitle-color">Recent Campaigns</h5>
             </div>
+        </div><!-- container -->
 
         <div class="row margin-bottom-40">
 
@@ -97,7 +98,7 @@
     {% endif %}
 
 
-    <div class="jumbotron jumbotron-bottom margin-bottom-zero jumbotron-cover">
+    <div class="jumbotron index-cover margin-bottom-zero jumbotron-cover session-active-cover">
         <div class="container wrap-jumbotron position-relative">
             <h1 class="title-site">Fueling Hope, One Donation at a Time</h1>
             <p class="subtitle-site txt-center"><strong>Community-Driven Crowdfunding</strong></p>
@@ -107,8 +108,9 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="{% static 'plugins/jquery.counterup/waypoints.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery.counterup/jquery.counterup.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
 
     <script type="text/javascript">
 
