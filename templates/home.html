@@ -48,12 +48,6 @@
                 <h5 class="btn-block text-center class-montserrat subtitle-color">Recent Campaigns</h5>
             </div>
 
-            <div class="margin-bottom-30">
-                {% for campaign in campaigns %}
-                    {% include "includes/campaign.html" with campaign=campaign %}
-                {% endfor %}
-            </div>
-
             <div class="row margin-bottom-40">
 
                 <div class="container">
@@ -81,6 +75,14 @@
                 </div><!-- row -->
             </div>
 
+            <div class="margin-bottom-30">
+                {% for campaign in campaigns %}
+                    {% include "includes/campaign.html" with campaign=campaign %}
+                {% endfor %}
+            </div>
+
+
+
         </div><!-- container wrap-ui -->
 
     {% else %}
@@ -91,7 +93,7 @@
                 </div>
 
                 <h3 class="margin-top-none text-center no-result no-result-mg">
-                    Has not been created any campaign
+                    No results have been found
                 </h3>
             </div>
         </div>

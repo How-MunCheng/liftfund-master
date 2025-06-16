@@ -3057,6 +3057,24 @@ i.featured-icon  {
     color: #FFF;
 }
 
+.campaign-image-wrapper{
+    width: 100%;          /* full card width */
+    height: 180px;        /* pick a height that looks good in your grid */
+    overflow: hidden;     /* hide whatever is cropped */
+    border-top-left-radius: 4px;   /* keep your rounded corners */
+    border-top-right-radius: 4px;
+}
+
+/*  ⬅️  Force the photo to cover the box, cropping if necessary        */
+.campaign-image-wrapper img.image-url{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* key line: fills box just like background-size: cover */
+    object-position: center center;/* keep subject centred */
+    display: block;       /* removes inline-img whitespace */
+}
+
+
 .padding-15 {
 	padding: 15px;
 }

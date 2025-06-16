@@ -8,8 +8,9 @@
                     <i class="fa fa-trophy"></i>
                 </span>
             {% endif %}
-
-            <img title="{{ campaign.title }}" src="{{ campaign.image_url }}" class="image-url img-responsive btn-block radius-image"/>
+            <div class="campaign-image-wrapper">
+                <img title="{{ campaign.title }}" src="{{ campaign.image_url }}" class="image-url radius-image"/>
+            </div>
         </a>
 
         <div class="caption">
@@ -41,14 +42,10 @@
                       {% elif campaign.days_remaining == 0 %}
                           <strong>Last Day</strong>
                       {% else %}
-                          <strong class="text-danger">No time anymore</strong>
+                          <strong class="text-danger">Campaign Ended</strong>
                       {% endif %}
 
                   {% endif %}
-
-                    <strong class="text-danger">Campaign Ended</strong>
-
-                    <strong>No Deadline</strong>
                 </em>
 
               </span>
