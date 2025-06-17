@@ -11,6 +11,7 @@ urlpatterns = [
     path('categories', CategoryListView.as_view(), name="categories"),
     path('campaigns-by-category/<int:pk>/', CampaignCategoryListView.as_view(), name="campaigns-by-category"),
     path('how-it-works/', HowItWorksView.as_view(), name='how-it-works'),
+    path('about-us/', AboutUsView.as_view(), name='about-us'),
 ]
 
 if settings.DEBUG:

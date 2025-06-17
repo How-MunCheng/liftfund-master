@@ -131,3 +131,12 @@ class HowItWorksView(TemplateView):
             }
         ]
         return context
+
+class AboutUsView(TemplateView):
+    template_name = "about_us.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add extra context variables here if needed in the future
+        # context["team"] = [ ... ]  # example
+        return context

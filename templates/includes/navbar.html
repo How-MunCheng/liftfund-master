@@ -62,7 +62,7 @@
                 </li>
 
                 <li>
-                    <a class="text-uppercase font-default" href="#">About Us</a>
+                    <a class="text-uppercase font-default" href="{% url 'core:about-us' %}">About Us</a>
                 </li>
 
                 {% if request.user.is_authenticated %}

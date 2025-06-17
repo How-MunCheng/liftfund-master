@@ -203,6 +203,10 @@ a:hover, a:focus {
 .margin-top-40 {
     margin-top: 40px !important;
 }
+.margin-top-120 {
+    margin-top: 120px !important;
+}
+
 
 /* Bottom */
 .margin-bottom-5 {
@@ -1310,4 +1314,106 @@ img.imgDonations {
   .col-md-12 {
     width: 100%;
   }
+}
+.about-section {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: #fff;
+}
+
+.about-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 2.6em;
+}
+
+.about-desc-lg {
+    text-align: center;
+    font-size: 1.3em;
+    max-width: 900px;
+    margin: 0 auto 28px auto;
+    color: #444;
+}
+
+.team-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.about-team-row {
+    display: flex;
+    justify-content: center;
+    gap: 60px; /* spacing between team members */
+    margin-bottom: 50px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+.about-team-member {
+    flex: 1 1 220px;
+    max-width: 240px;
+    min-width: 180px;
+    background: none;
+    padding: 0 10px;
+    text-align: center;
+}
+.about-team-member img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background: #eee;
+}
+.about-team-member h3 {
+    margin-top: 10px;
+    font-size: 1.28em;
+    font-weight: 700;
+}
+.team-role {
+    font-size: 1.1em;
+    color: #888;
+    margin-bottom: 5px;
+}
+.about-desc {
+    font-size: 1.1em;
+    color: #e85c1a;
+    margin-bottom: 0.6em;
+    line-height: 1.45;
+}
+
+.values-section {
+    margin-bottom: 60px;
+}
+.about-values-list {
+    display: flex;
+    justify-content: center;
+}
+.about-values-list ul {
+    list-style: disc inside;
+    text-align: center;
+    font-size: 1.22em; /* larger font for description */
+    color: #333;
+    margin: 0 auto;
+    padding: 0;
+}
+.about-values-list li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    .about-team-row {
+        gap: 24px;
+    }
+    .about-title { font-size: 2.1em; }
+}
+@media (max-width: 650px) {
+    .about-team-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+}
+.about-us-section {
+    margin-top: 200px; /* or 80px, adjust as needed */
 }

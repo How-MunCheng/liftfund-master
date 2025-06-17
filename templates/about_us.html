@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="jumbotron md index-header jumbotron_set jumbotron-cover">
+    <div class="container wrap-jumbotron position-relative">
+        <h1 class="title-site">LiftFund</h1>
+        <p class="subtitle-site"><strong>Community-Driven Crowdfunding</strong></p>
+    </div>
+</div>
+
+<div class="container about-us-page margin-top-40 margin-bottom-40">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <h1 class="margin-bottom-20">About LiftFund</h1>
+            <p class="lead">
+                LiftFund is a platform dedicated to helping individuals, organizations, and communities turn ideas into reality. Our mission is to provide a safe, transparent, and supportive space for crowdfunding, ensuring that every voice can be heard and every campaign gets a chance to make a difference.
+            </p>
+        </div>
+    </div>
+    <hr class="margin-top-40 margin-bottom-40">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="margin-bottom-30">Meet Our Team</h2>
+        </div>
+        <!-- Team members: Add margin-bottom for vertical, and col-md-4 for horizontal space -->
+        <div class="col-sm-4 margin-bottom-40">
+            <div class="card team-member-card text-center" style="border: none;">
+                <img src="{% static 'img/team1.jpg' %}" class="img-circle" style="width:120px; height:120px; margin-bottom:15px;" alt="Founder">
+                <h4><strong>John Doe</strong></h4>
+                <p>Founder & CEO</p>
+            </div>
+        </div>
+        <div class="col-sm-4 margin-bottom-40">
+            <div class="card team-member-card text-center" style="border: none;">
+                <img src="{% static 'img/team2.jpg' %}" class="img-circle" style="width:120px; height:120px; margin-bottom:15px;" alt="Tech Lead">
+                <h4><strong>Steven Smith</strong></h4>
+                <p>Technical Lead</p>
+            </div>
+        </div>
+        <div class="col-sm-4 margin-bottom-40">
+            <div class="card team-member-card text-center" style="border: none;">
+                <img src="{% static 'img/team3.jpg' %}" class="img-circle" style="width:120px; height:120px; margin-bottom:15px;" alt="Community Manager">
+                <h4><strong>Lisa Ashford</strong></h4>
+                <p>Community Manager</p>
+            </div>
+        </div>
+    </div>
+    <hr class="margin-top-40 margin-bottom-40">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="margin-bottom-30">Our Values</h2>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="value-box">
+                <i class="fa fa-heart fa-3x margin-bottom-10"></i>
+                <h4><strong>Empathy</strong></h4>
+                <p class="about-value-desc" style="font-size: 20px; line-height: 1.5;">We care deeply about the people and causes on our platform. Every campaign matters.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="value-box">
+                <i class="fa fa-lock fa-3x margin-bottom-10"></i>
+                <h4><strong>Trust</strong></h4>
+                <p class="about-value-desc" style="font-size: 20px; line-height: 1.5;">We ensure every donation is safe, transparent, and goes where it’s needed most.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="value-box">
+                <i class="fa fa-lightbulb-o fa-3x margin-bottom-10"></i>
+                <h4><strong>Innovation</strong></h4>
+                <p class="about-value-desc" style="font-size: 20px; line-height: 1.5;">We continually improve our platform to empower our users and maximize impact.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
