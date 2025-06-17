@@ -1,9 +1,11 @@
+from django.db.models.functions import Cast
+
 from core.models import Country
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, ExpressionWrapper, FloatField, F
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -15,6 +17,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 from .forms import *
 from .models import Donation
+from campaign.models import  Campaign
+from core.models import Category
 
 import json
 import stripe
@@ -28,10 +32,20 @@ class CampaignListView(ListView):
     paginate_by = 12  # Show 12 campaigns per page
 
     def get_queryset(self):
-        queryset = Campaign.objects.prefetch_related("user").order_by('-date')
-        
-        # Handle search
         query = self.request.GET.get('q')
+        queryset = (
+            Campaign.objects
+            .prefetch_related("user")
+            .filter(is_active=True)
+            .annotate(
+                annotated_total_raised=Sum('donation__donation', filter=Q(donation__approved=True)),
+                annotated_progress_percentage=ExpressionWrapper(
+                    100 * (Sum('donation__donation', filter=Q(donation__approved=True)) /
+                    Cast(F('goal'), FloatField())),
+                    output_field=FloatField()
+                ),
+            ).order_by('-date')
+        )
         if query:
             queryset = queryset.filter(
                 Q(title__icontains=query) |
@@ -224,4 +238,37 @@ class DonationView(CreateView):
 
 class DonationSuccessView(TemplateView):
     template_name = "campaigns/donation_success.html"
+
+
+class CampaignsByCategoryListView(ListView):
+    model = Campaign
+    template_name = "campaigns/campaigns-by-category.html"
+    context_object_name = "campaigns"
+
+    def get_queryset(self):
+        category_id = self.kwargs.get["pk"]
+        return (
+            Campaign.objects
+            .filter(category_id=category_id, is_active=True)
+            .annotate(
+                annotated_total_raised=Sum(
+                    'donation__donation', filter=Q(donation__approved=True)
+                ),
+                annotated_progress_percentage=ExpressionWrapper(
+                    100 * (
+                            Sum('donation__donation', filter=Q(donation__approved=True)) /
+                            Cast(F('goal'), FloatField())
+                    ),
+                    output_field=FloatField()
+                ),
+            )
+            .order_by('-date')
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Get the category object for the page heading, etc.
+        context["category"] = Category.objects.get(pk=self.kwargs["pk"])
+        return context
+
 

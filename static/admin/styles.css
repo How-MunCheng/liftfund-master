@@ -132,8 +132,8 @@ iframe {
 /************ Version 1.4 **************/
 #search {
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
@@ -169,9 +169,8 @@ iframe {
     font-size: 60px;
     font-weight: 300;
     text-align: center;
-    border: 0px;
-    margin: 0px auto;
-    margin-top: -51px;
+    border: 0;
+    margin: -51px auto 0;
     padding-left: 30px;
     padding-right: 30px;
     outline: none;
@@ -282,7 +281,7 @@ i.featured-icon  {
     border-radius: 50px;
     color: #ff9800;
     font-size: 25px;
-    text-shadow: 0 0px 2px #adadad;
+    text-shadow: 0 0 2px #adadad;
 }
 
 .padding-15 {
@@ -478,7 +477,7 @@ a:focus.btn-whatsapp {
 .dropdown-menu {
   padding-top: 0.955rem;
   border: 0;
-  box-shadow: 0px 5px 40px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 40px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: all 150ms linear;
     -moz-transition: all 150ms linear;
     -o-transition: all 150ms linear;
@@ -502,9 +501,8 @@ a:focus.btn-whatsapp {
     transform: rotate(180deg);
 }
 .dropdown-toggle::after {
-  font-weight: 400;
   font-style: normal;
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Free", sans-serif;
   font-weight: 900;
   border: none;
   content: "\f107";
@@ -733,7 +731,6 @@ a:focus.btn-whatsapp {
   -webkit-transform: translateX(0);
   transform: translateX(0);
   transition: -webkit-transform .3s ease;
-  transition: transform .3s ease;
   transition: transform .3s ease,-webkit-transform .3s ease;
 }
 .bg-sections > div {
@@ -879,7 +876,7 @@ a:focus.google-button {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 50%;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .button-avatar-upload {
   color: #FFF;
@@ -933,7 +930,6 @@ a:hover.button-avatar-upload {
     width: 100%;
     margin: 0 auto 25px auto;
     padding: 50px 0;
-    color: #8d9499;
     color: #97A1A8;
     cursor: pointer;
     border: 2px dashed #C8CBCE;
@@ -988,27 +984,6 @@ a:hover.button-avatar-upload {
     font-size: 12px;
 }
 
-.filer-input-choose-btn {
-    display: inline-block;
-    padding: 8px 14px;
-    outline: none;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    white-space: nowrap;
-    font-size: 12px;
-    font-weight: bold;
-    color: #8d9496;
-    border-radius: 3px;
-    border: 1px solid #c6c6c6;
-    vertical-align: middle;
-    background-color: #fff;
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.05);
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    transition: all 0.2s;
-}
-
 .filer-input-choose-btn:hover,
 .filer-input-choose-btn:active {
     color: inherit;
@@ -1017,19 +992,7 @@ a:hover.button-avatar-upload {
 .filer-input-choose-btn:active {
     background-color: #f5f5f5;
 }
-.previewPhoto {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #FFF;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center center;
-	display: none;
-	cursor: default;
-}
+
 .btn-remove-photo {
 	position: absolute;
 	top: 20px;
@@ -1079,7 +1042,7 @@ a:hover.button-avatar-upload {
   border-left: 2px solid #ededed;
 }
 #updates li:last-child{
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 #updates li:before{
   content: '';
@@ -1246,9 +1209,14 @@ a.social-share i {
 a:not([class*="btn"]) {
     text-decoration: none;
 }
-a:not([class*="btn"]):not([class*="nav-link"]):not([class*="dropdown-item"]):not([class*="list-group-item"]):not([class*=*"page-link"]):hover {
+a:not([class*="btn"]),
+ :not([class*="nav-link"]),
+ :not([class*="dropdown-item"]),
+ :not([class*="list-group-item"]),
+ :not([class*="page-link"]):hover {
     text-decoration: underline;
 }
+
 .bg-success {
     background-color: #28a745!important;
 }
@@ -1256,7 +1224,7 @@ a:not([class*="btn"]):not([class*="nav-link"]):not([class*="dropdown-item"]):not
   text-overflow:ellipsis;
 }
 .card-settings > .list-group-flush >.list-group-item {
-  border-width: 0 0 0px !important;
+  border-width: 0 0 0 !important;
 }
 .icon-dashboard {
   background-color: #2687072e;
@@ -1427,15 +1395,7 @@ a.page-link,
   background-size: cover;
   background-color: #232a29;
 }
-.carousel-cover:nth-child(1) {
-  background-image: url('../img/slider-1.jpg');
-}
-.carousel-cover:nth-child(2) {
-  background-image: url('../img/slider-2.jpg');
-}
-.carousel-cover:nth-child(3) {
-  background-image: url('../img/slider-3.jpg');
-}
+
 .bg-cover {
   background-image: url('../img/cover.jpg');
 }

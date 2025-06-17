@@ -5,8 +5,7 @@
     <div class="jumbotron md index-header jumbotron_set jumbotron-cover">
         <div class="container wrap-jumbotron position-relative">
             <h2 class="title-site">{{ category.name }}</h2>
-
-            <p class="subtitle-site"><strong>({{ category.campaign_set.count }}) campaigns available in this category</strong></p>
+            <p class="subtitle-site"><strong>({{ campaigns|length }}) campaigns available in this category</strong></p>
         </div>
     </div>
 
@@ -15,8 +14,8 @@
         <!-- Col MD -->
         <div class="col-md-12 margin-top-20 margin-bottom-20">
 
-            {% if category.campaign_set.count > 0 %}
-                {% for campaign in category.campaign_set.all %}
+            {% if campaigns %}
+                {% for campaign in campaigns %}
                     {% include 'includes/campaign.html' %}
                 {% endfor %}
             {% else %}

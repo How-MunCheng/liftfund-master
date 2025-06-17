@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="col-xs-12 col-sm-6 col-md-3 col-thumb">
     <div class="thumbnail padding-top-zero">
 
@@ -52,21 +53,25 @@
 
                 <span class="stats-campaigns">
                     <span class="pull-left">
-                        <strong>400</strong>
+                        <strong>${{ campaign.annotated_total_raised|default:0|intcomma }}</strong>
                         Raised
                     </span>
                     <span class="pull-right">
-                        <strong>40%</strong>
+                        <strong>{{ campaign.annotated_progress_percentage|default:0|floatformat:0 }}%</strong>
                     </span>
-                </span>
 
-                <span class="progress">
-                    <span class="percentage" style="width: 40%" aria-valuemin="0" aria-valuemax="100" role="progressbar"></span>
+                    <span class="progress">
+                        <span class="percentage"
+                            style="width: {{ campaign.annotated_progress_percentage|default:0|floatformat:0 }}%;"
+                            aria-valuenow="{{ campaign.annotated_progress_percentage|default:0|floatformat:0 }}"
+                            aria-valuemin="0" aria-valuemax="100"
+                            role="progressbar"></span>
+                    </span>
                 </span>
             </p>
 
             <h6 class="margin-bottom-zero">
-                <em><strong>Goal {{ campaign.goal }}</strong></em>
+                <em><strong>Goal ${{ campaign.goal|intcomma }}</strong></em>
             </h6>
 
         </div><!-- /caption -->

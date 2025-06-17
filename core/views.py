@@ -1,4 +1,5 @@
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, FloatField, ExpressionWrapper, F, Count
+from django.db.models.functions import Cast
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 
@@ -11,10 +12,23 @@ class HomeView(ListView):
     model = Campaign
     template_name = "home.html"
     context_object_name = "campaigns"
-    
+
     def get_queryset(self):
         query = self.request.GET.get('q')
-        qs = Campaign.objects.prefetch_related("user").filter(is_active=True).order_by("-date")
+        qs = (
+            Campaign.objects
+            .prefetch_related("user")
+            .filter(is_active=True)
+            .annotate(
+                annotated_total_raised=Sum('donation__donation', filter=Q(donation__approved=True)),
+                annotated_progress_percentage=ExpressionWrapper(
+                    100 * (Sum('donation__donation', filter=Q(donation__approved=True)) /
+                    Cast(F('goal'), FloatField())),
+                    output_field=FloatField()
+                ),
+            )
+            .order_by("-date")
+        )
         if query:
             qs = qs.filter(
                 Q(title__icontains=query) |
@@ -23,7 +37,7 @@ class HomeView(ListView):
                 Q(category__name__icontains=query)
             )
 
-        return qs[:8]
+        return qs  # Or your preferred limit
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,22 +45,62 @@ class HomeView(ListView):
         context["fund_raised"] = Donation.objects.filter(approved=True).aggregate(Sum("donation"))
         context["members"] = User.objects.count()
         context["search_term"] = self.request.GET.get("q", "")
-        context["categories"] = Category.objects.prefetch_related("campaign_set").all()
+        context["categories"] = (
+            Category.objects.annotate(
+                num_campaigns=Count('campaign', filter=Q(campaign__is_active=True))
+            ).order_by('-num_campaigns', 'name')[:4]
+        )
         return context
-
 
 class CategoryListView(ListView):
     model = Category
     template_name = "categories.html"
     context_object_name = "categories"
-    queryset = Category.objects.prefetch_related("campaign_set").all()
+
+    def get_queryset(self):
+        return Category.objects.annotate(
+            active_campaign_count=Count('campaign', filter=Q(campaign__is_active=True))
+        ).order_by('name')
 
 
-class CampaignsByCategoryView(DetailView):
-    model = Category
+
+
+class CampaignCategoryListView(ListView):
+    model = Campaign
     template_name = "campaigns/campaigns-by-category.html"
-    context_object_name = "category"
-    object = None
+    context_object_name = "campaigns"
+
+    def get_queryset(self):
+        category_id = self.kwargs.get("pk")
+        query = self.request.GET.get('q')
+        qs = (
+            Campaign.objects.filter(category_id=category_id, is_active=True)
+            .annotate(
+                annotated_total_raised=Sum(
+                    'donation__donation', filter=Q(donation__approved=True)
+                ),
+                annotated_progress_percentage=ExpressionWrapper(
+                    100 * (
+                        Sum('donation__donation', filter=Q(donation__approved=True)) /
+                        Cast(F('goal'), FloatField())
+                    ),
+                    output_field=FloatField()
+                ),
+            )
+            .order_by('-date')
+        )
+        if query:
+            qs = qs.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query) |
+                Q(location__icontains=query)
+            )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = Category.objects.get(pk=self.kwargs["pk"])
+        return context
 
 
 class HowItWorksView(TemplateView):

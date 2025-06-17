@@ -10,4 +10,5 @@ urlpatterns = [
     path('<uuid:pk>/donation', DonationView.as_view(), name='campaign-donation'),
     path('campaigns/', CampaignListView.as_view(), name='campaign-list'),
     path('donation/success/', DonationSuccessView.as_view(), name='donation-success'),
+    path('campaigns-by-category/<int:pk>/', CampaignsByCategoryListView.as_view(), name='campaigns-by-category'),
 ]

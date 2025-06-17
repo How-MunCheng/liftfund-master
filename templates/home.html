@@ -3,14 +3,14 @@
 
 {% block content %}
 
-    <div class="jumbotron index-header jumbotron_set jumbotron-cover session-active-cover">
-        <div class="container wrap-jumbotron position-relative">
-            <h1 class="title-site txt-left" id="titleSite">One step closer to change</h1>
-            <p class="subtitle-site txt-left"><strong>Because Every Life Deserves a Chance</strong></p>
-        </div><!-- container wrap-jumbotron -->
-    </div><!-- jumbotron -->
+<div class="jumbotron index-header jumbotron_set jumbotron-cover session-active-cover">
+    <div class="container wrap-jumbotron position-relative">
+        <h1 class="title-site txt-left" id="titleSite">One step closer to change</h1>
+        <p class="subtitle-site txt-left"><strong>Because Every Life Deserves a Chance</strong></p>
+    </div><!-- container wrap-jumbotron -->
+</div><!-- jumbotron -->
 
-    <div class="container margin-bottom-40">
+    <div class="containercategory margin-bottom-5">
 
         <div class="col-md-12 btn-block margin-bottom-40 head-home">
             <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">Categories</h1>
@@ -20,107 +20,79 @@
                 </a>
             </h5>
         </div>
-
-        {% for category in categories %}
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 row-margin-20 text-center">
-                <a href="{% url 'core:campaigns-by-category' category.id %}">
-                    <img class="img-responsive custom-rounded center-block" 
-                         src="{{ category.category_image }}" 
-                         alt="{{ category.name }}" 
-                         style="height: 50px; width: 50px;">
-                </a>
-
-                <h1 class="title-services">
+        <div class="rownew categories-row">
+            {% for category in categories %}
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 row-margin-20 text-center">
                     <a href="{% url 'core:campaigns-by-category' category.id %}">
-                        {{ category.name }} ({{ category.campaign_set.count }})
+                        <img class="img-responsive custom-rounded center-block"
+                             src="{{ category.category_image }}"
+                             alt="{{ category.name }}"
+                             style="height: 50px; width: 50px;">
                     </a>
-                </h1>
-            </div>
-        {% endfor %}
 
-    </div>
+                    <h1 class="title-services">
+                        <a href="{% url 'core:campaigns-by-category' category.id %}">
+                            {{ category.name }} ({{ category.num_campaigns }})
+                        </a>
+                    </h1>
+                </div>
+            {% endfor %}
+        </div>
 
-        <div class="container margin-bottom-40">
+        <div class="containercategory margin-bottom-10">
             <div class="col-md-12 btn-block margin-bottom-40">
                 <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">Campaigns</h1>
                 <h5 class="btn-block text-center class-montserrat subtitle-color">Recent Campaigns</h5>
             </div>
-        </div><!-- container -->
-
-        <div class="row margin-bottom-40">
-
-            <div class="container">
-                <div class="col-md-4 border-stats">
-                    <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span
-                            class=".numbers-with-commas counter">{{ members }}</span>
-                    </h1>
-                    <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">Members</h5>
-                </div><!-- col-md-3 -->
-
-                <div class="col-md-4 border-stats">
-                    <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
-                        <span class=".numbers-with-commas counter">{{ total_campaigns }}</span>
-                    </h1>
-                    <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">CAMPAIGNS</h5>
-                </div><!-- col-md-3 -->
-
-                <div class="col-md-4 border-stats">
-                    <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
-                        ${{ fund_raised.donation__sum }}</h1>
-                    <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">
-                        FUNDS RAISED</h5>
-                </div><!-- col-md-3 -->
-
-            </div><!-- row -->
         </div>
+    </div><!-- container category -->
+    <div class="container margin-bottom-40">
 
-    {% if campaigns.count > 0 %}
+        <!-- Col MD -->
+        <div class="col-md-12 margin-top-20 margin-bottom-20">
 
-            <div class="margin-bottom-30">
-                {% for campaign in campaigns %}
-                    {% include "includes/campaign.html" with campaign=campaign %}
+            {% if campaigns.count > 0 %}
+                {% for campaign in campaigns|slice:"8" %}
+                    {% include 'includes/campaign.html' %}
                 {% endfor %}
-            </div>
-
-
-    {% else %}
-        <div class="container margin-bottom-40">
-            <div class="margin-bottom-30">
-                <div class="btn-block text-center margin-top-40">
-                    <i class="ion ion-speakerphone ico-no-result"></i>
+            {% else %}
+                <div class="btn-block text-center">
+                    <i class="icon-search ico-no-result"></i>
                 </div>
 
                 <h3 class="margin-top-none text-center no-result no-result-mg">
                     No results have been found
                 </h3>
-            </div>
-        </div>
-    {% endif %}
+            {% endif %}
 
+        </div><!-- /COL MD -->
+    </div><!-- container wrap-ui -->
 
-    <div class="jumbotron index-cover margin-bottom-zero jumbotron-cover session-active-cover">
-        <div class="container wrap-jumbotron position-relative">
-            <h1 class="title-site">Fueling Hope, One Donation at a Time</h1>
-            <p class="subtitle-site txt-center"><strong>Community-Driven Crowdfunding</strong></p>
+    <div class="row margin-bottom-40">
 
-        </div><!-- container wrap-jumbotron -->
-    </div><!-- jumbotron -->
-{% endblock %}
+        <div class="container">
+            <div class="col-md-4 border-stats">
+                <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow"><span
+                        class=".numbers-with-commas counter">{{ members }}</span>
+                </h1>
+                <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">Members</h5>
+            </div><!-- col-md-3 -->
 
-{% block javascript %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+            <div class="col-md-4 border-stats">
+                <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
+                    <span class=".numbers-with-commas counter">{{ total_campaigns }}</span>
+                </h1>
+                <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">CAMPAIGNS</h5>
+            </div><!-- col-md-3 -->
 
+            <div class="col-md-4 border-stats">
+                <h1 class="btn-block text-center class-montserrat margin-bottom-zero none-overflow">
+                    ${{ fund_raised.donation__sum }}</h1>
+                <h5 class="btn-block text-center class-montserrat subtitle-color text-uppercase">
+                    FUNDS RAISED</h5>
+            </div><!-- col-md-3 -->
 
-    <script type="text/javascript">
-
-        jQuery(document).ready(function ($) {
-            $('.counter').counterUp({
-                delay: 10, // the delay time in ms
-                time: 1000 // the speed time in ms
-            });
-        });
-
-    </script>
+        </div><!-- row -->
+    </div>
 
 {% endblock %}

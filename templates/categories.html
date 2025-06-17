@@ -19,8 +19,8 @@
                 </a>
 
                 <h1 class="title-services">
-                    <a href="#">
-                        {{ category.name }} ({{ category.campaign_set.count }})
+                    <a href="{% url 'core:campaigns-by-category' category.id %}">
+                        {{ category.name }} ({{ category.active_campaign_count }})
                     </a>
                 </h1>
             </div><!-- col-md-3 row-margin-20 -->
