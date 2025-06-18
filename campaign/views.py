@@ -24,6 +24,7 @@ import json
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.webhook
 
 class CampaignListView(ListView):
     model = Campaign
@@ -271,4 +272,33 @@ class CampaignsByCategoryListView(ListView):
         context["category"] = Category.objects.get(pk=self.kwargs["pk"])
         return context
 
+
+@csrf_exempt
+def stripe_webhook(request):
+    import stripe
+    payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except (ValueError, stripe.error.SignatureVerificationError):
+        return HttpResponse(status=400)
+
+    # Handle checkout session completed
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        donation_id = session.get('metadata', {}).get('donation_id')
+        if donation_id:
+            from .models import Donation
+            try:
+                donation = Donation.objects.get(id=donation_id)
+                donation.approved = True
+                donation.save()
+            except Donation.DoesNotExist:
+                pass
+
+    return HttpResponse(status=200)
 
