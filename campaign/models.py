@@ -13,6 +13,7 @@ from core.models import Category
 class CampaignStatusChoices(models.TextChoices):
     ACTIVE = "active", "Active"
     INACTIVE = "inactive", "Inactive"
+    PENDING = "pending", "Pending"
 
 
 class Campaign(models.Model):

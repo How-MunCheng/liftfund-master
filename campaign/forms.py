@@ -7,12 +7,12 @@ from .models import *
 class CampaignForm(forms.ModelForm):
     class Meta:
         model = Campaign
-        exclude = ('user', 'is_deleted')
+        exclude = ('user', 'is_deleted', 'status')
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        self.fields['deadline'].input_formats = ['%Y-%m-%d']
+        self.fields['deadline'].input_formats = ['%d-%m-%Y', '%Y-%m-%d']
 
     def clean_user(self):
         return self.user
