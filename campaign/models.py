@@ -14,6 +14,7 @@ class CampaignStatusChoices(models.TextChoices):
     ACTIVE = "active", "Active"
     INACTIVE = "inactive", "Inactive"
     PENDING = "pending", "Pending"
+    DELETED = "deleted", "Deleted"
 
 
 class Campaign(models.Model):

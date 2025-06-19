@@ -3,6 +3,7 @@ from django.urls import path
 from .views.admin_views import (
     AdminDashboardView,
     AdminDonationApproveView,
+    AdminDonationDeleteView,
     AdminCampaignsView,
     AdminCampaignEditView,
     AdminCampaignDeleteView,
@@ -25,6 +26,7 @@ urlpatterns = [
     path('campaigns/delete/', AdminCampaignDeleteView.as_view(), name='campaign-delete'),
     
     path('donations/', AdminDonationsView.as_view(), name='donations'),
+    path('donations/delete/', AdminDonationDeleteView.as_view(), name='donation-delete'),
     
     path('categories/', AdminCategoriesView.as_view(), name='categories'),
     path('categories/create/', AdminCategoryCreateView.as_view(), name='category-create'),

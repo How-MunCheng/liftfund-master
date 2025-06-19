@@ -95,6 +95,7 @@ class AdminCampaignsView(SuperUserRequiredMixin, ListView):
         return (
             Campaign.objects.select_related("user", "category")
             .prefetch_related("donation_set")
+            .exclude(status=CampaignStatusChoices.DELETED)
             .order_by("-date")
         )
 
@@ -275,6 +276,18 @@ class AdminDonationApproveView(SuperUserRequiredMixin, View):
             donation.approved = True
             donation.save()
             messages.success(request, 'Donation approved successfully!')
+        except Donation.DoesNotExist:
+            messages.error(request, 'Donation not found!')
+        return redirect('admin_dashboard:donations')
+
+
+class AdminDonationDeleteView(SuperUserRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        try:
+            donation_id = request.POST.get('id')
+            donation = Donation.objects.get(id=donation_id)
+            donation.delete()
+            messages.success(request, 'Donation deleted successfully!')
         except Donation.DoesNotExist:
             messages.error(request, 'Donation not found!')
         return redirect('admin_dashboard:donations')
